@@ -3,10 +3,10 @@ from scrapy import Spider, Request, Selector
 from datetime import datetime
 import time
 import re
-from zhuishubang.items import ZhuishubangItem
+from zhuishubang.items import ArticleItem
 
 
-class spider(Spider):
+class zhuishubang(Spider):
     name = "zhuishubang"
     start_urls = ['https://www.zhuishubang.com/']
     allow_domains = ['https://www.zhuishubang.com/']
@@ -57,7 +57,7 @@ class spider(Spider):
         # 通过len方法得到所有节点的个数
         chapter_size = len(chapter_nodes)
 
-        item = ZhuishubangItem()
+        item = ArticleItem()
         item['site_id'] = 1
         item['site_name'] = "zhuishubang"
 

@@ -8,7 +8,9 @@
 import scrapy
 
 
-class ArticleItem(scrapy.Item):
+class JinjiangItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
     # define the fields for your item here like:
     # name = scrapy.Field()
     site_id = scrapy.Field()
