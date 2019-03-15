@@ -4,7 +4,7 @@ from datetime import datetime
 import time
 import re
 
-from biqugecc.items import BiqugeccItem
+from ..items import BiqugeccItem
 
 
 class biqugecc(Spider):
