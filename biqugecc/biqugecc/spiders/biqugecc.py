@@ -4,7 +4,7 @@ from datetime import datetime
 import time
 import re
 
-from biqugecc.items import BiqugeccItem
+from ..items import BiqugeccItem
 
 
 class biqugecc(Spider):
@@ -22,11 +22,11 @@ class biqugecc(Spider):
 
     def parseArticle(self, response):
 
-        article_name = response.xpath("//div[@id='info']/h1/text()").extract()[0]
-        author = response.xpath('//*[@id="info"]/p[1]/text()').extract()[0].split('：', 1)[1]
+        article_name = response.xpath("//div[@id='info']/h1/text()").extract()[0].encode('utf-8')
+        author = response.xpath('//*[@id="info"]/p[1]/text()').extract()[0].encode('utf-8').split('：', 1)[1]
         only_id = article_name + "-:-" + author
         lasted_name = response.xpath('//*[@id="info"]/p[4]/a/text()').extract()[0]
-        lasted_time_str = response.xpath('//*[@id="info"]/p[3]/text()').extract()[0].split('：', 1)[1]
+        lasted_time_str = response.xpath('//*[@id="info"]/p[3]/text()').extract()[0].encode('utf-8').split('：', 1)[1]
         try:
             lasted_datetime = datetime.strptime(lasted_time_str, "%m/%d/%Y %I:%M:%S %p")
         except ValueError:
@@ -34,7 +34,7 @@ class biqugecc(Spider):
         lasted_time = int(time.mktime(lasted_datetime.timetuple()))
 
         is_full_status = response.xpath('//meta[@property="og:novel:status"]/@content').extract()[0]
-        is_full = 1 if is_full_status == '连载' else 2
+        is_full = 1 if is_full_status.encode('utf-8') == '连载' else 2
         is_vip = 0
         votes = 0
         chapter_nodes = response.xpath('//*[@id="list"]/dl/dd').extract()

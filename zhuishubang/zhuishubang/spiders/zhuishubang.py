@@ -3,7 +3,7 @@ from scrapy import Spider, Request, Selector
 from datetime import datetime
 import time
 import re
-from zhuishubang.items import ArticleItem
+from ..items import ArticleItem
 
 
 class zhuishubang(Spider):

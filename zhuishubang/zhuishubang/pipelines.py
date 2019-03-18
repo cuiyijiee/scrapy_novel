@@ -10,7 +10,7 @@ import pymysql
 
 class ZhuishubangPipeline(object):
     def process_item(self, item, spider):
-        connection = pymysql.connect(host='47.99.47.160',
+        connection = pymysql.connect(host='127.0.0.1',
                                      db='scrapy',
                                      user='scrapy',
                                      password='Abc,123.',
