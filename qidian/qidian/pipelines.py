@@ -28,7 +28,7 @@ class QidianPipeline(object):
                 if results == 0:
                     sql = "INSERT INTO `article` (`siteid`,`sitename`,`articleid`,`articlename`,`author`,`onlyid`," \
                           "`lastedtime`,`lastedname`,`isfull`,`isvip`,`votes`,`articleurl`,`chaptersize`,`monthsvote`,`talks`,`moneyman`) VALUES" \
-                          " (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                          " (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
                     cursor.execute(sql, (
                         item['site_id'],
                         item['site_name'],

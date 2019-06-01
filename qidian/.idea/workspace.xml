@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c27d4ce9-e78a-4218-83f7-edebc0f42fca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qidian/spiders/qidian.py" beforeDir="false" afterPath="$PROJECT_DIR$/qidian/spiders/qidian.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qidian/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/qidian/pipelines.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qidian/spiders/qidian.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="67" column="18" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
+            <state relative-caret-position="574">
+              <caret line="83" column="10" lean-forward="true" selection-start-line="83" selection-start-column="10" selection-end-line="83" selection-end-column="10" />
               <folding>
                 <element signature="e#15#59#0" expanded="true" />
               </folding>
@@ -46,14 +45,23 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qidian/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+            <state relative-caret-position="450">
+              <caret line="30" column="76" selection-start-line="30" selection-start-column="76" selection-end-line="30" selection-end-column="76" />
               <folding>
                 <element signature="e#193#215#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/Python/Python37/Lib/site-packages/pymysql/cursors.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
             </state>
           </provider>
         </entry>
@@ -67,6 +75,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>execute</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -76,8 +89,8 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/qidian/settings.py" />
         <option value="$PROJECT_DIR$/qidian/items.py" />
-        <option value="$PROJECT_DIR$/qidian/pipelines.py" />
         <option value="$PROJECT_DIR$/qidian/spiders/qidian.py" />
+        <option value="$PROJECT_DIR$/qidian/pipelines.py" />
       </list>
     </option>
   </component>
@@ -187,12 +200,12 @@
       <workItem from="1553001124030" duration="7134000" />
       <workItem from="1559221081308" duration="60000" />
       <workItem from="1559221872920" duration="965000" />
-      <workItem from="1559370264352" duration="5163000" />
+      <workItem from="1559370264352" duration="5502000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13322000" />
+    <option name="totallyTimeSpent" value="13661000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -214,7 +227,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="SBT Console" order="10" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.03218884" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.09978541" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -258,16 +271,6 @@
     <entry file="file://$PROJECT_DIR$/qidian/middlewares.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/qidian/pipelines.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-          <folding>
-            <element signature="e#193#215#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qidian/items.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="736">
@@ -277,10 +280,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/qidian/spiders/qidian.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="67" column="18" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
+        <state relative-caret-position="574">
+          <caret line="83" column="10" lean-forward="true" selection-start-line="83" selection-start-column="10" selection-end-line="83" selection-end-column="10" />
           <folding>
             <element signature="e#15#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python/Python37/Lib/site-packages/pymysql/cursors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qidian/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="76" selection-start-line="30" selection-start-column="76" selection-end-line="30" selection-end-column="76" />
+          <folding>
+            <element signature="e#193#215#0" expanded="true" />
           </folding>
         </state>
       </provider>
