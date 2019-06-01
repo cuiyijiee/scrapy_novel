@@ -11,7 +11,7 @@ import pymysql
 class QidianPipeline(object):
 
     def process_item(self, item, spider):
-        connection = pymysql.connect(host='129.211.134.14',
+        connection = pymysql.connect(host='127.0.0.1',
                                      db='scrapy',
                                      user='scrapy',
                                      password='Abc,123.',
