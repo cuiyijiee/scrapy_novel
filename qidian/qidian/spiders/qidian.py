@@ -12,13 +12,25 @@ cookie_jar = CookieJar()
 
 class qidian(Spider):
     name = "qidian"
-    start_urls = ['https://m.qidian.com/majax/rank/updatelist?gender=male&catId=-1&pageNum=1']
+    start_urls = ['https://m.qidian.com/majax/free/getFreeLeftTime?gender=male']
     allow_domains = ['https://m.qidian.com/']
 
     def parse(self, response):
-        for page_index in range(1, 31):
-            list_page_url = 'https://m.qidian.com/majax/rank/updatelist?gender=male&catId=-1&pageNum=' + str(page_index)
-            yield Request(url=list_page_url, callback=self.parseLastUpdatePage)
+
+        cookie = response.headers.getlist('Set-Cookie')[0]
+        token = bytes.decode(cookie).split(";")[0].split("=")[1]
+
+        for male_page_index in range(1, 31):
+            list_page_url = 'https://m.qidian.com/majax/rank/updatelist?gender=male&catId=-1&pageNum=' + str(male_page_index) + '&_csrfToken=' + token
+            yield Request(url=list_page_url, callback=self.parseLastUpdatePage, meta={
+                "token":token
+            })
+
+        for female_page_index in range(1, 11):
+            list_page_url = 'https://m.qidian.com/majax/rank/updatelist?gender=female&catId=-1&pageNum=' + str(female_page_index) + '&_csrfToken=' + token
+            yield Request(url=list_page_url, callback=self.parseLastUpdatePage, meta={
+                "token":token
+            })
 
     def parseLastUpdatePage(self, response):
         response_json = json.loads(response.body)
@@ -60,12 +72,12 @@ class qidian(Spider):
         is_vip = 1 if len(is_vip_group) == 3 else 2
 
         votes = response.xpath('//*[@id="payTicketsX"]/li[1]/a/p/span[1]/text()').extract()[0]
-        months_vote = response.xpath('//*[@id="payTicketsX"]/li[2]/a/p/span[1]/text()').extract()[0]
-        money_man = response.xpath('//*[@id="payTicketsX"]/li[3]/a/p/span/text()').extract()[0]
+        months_vote = int(response.xpath('//*[@id="payTicketsX"]/li[2]/a/p/span[1]/text()').extract()[0])
+        money_man = int(response.xpath('//*[@id="payTicketsX"]/li[3]/a/p/span/text()').extract()[0])
 
         # TODO 评论数需要登录
         #talks = response.xpath('//*[@id="ariaFriNum"]/output/text()').extract()[0]
-        talks = '0'
+        talks = 0
 
         yield Request(url='https://m.qidian.com/book/' + str(response.meta['article_id']) + '/catalog', callback=self.parseChapterSize, meta={
             'article_id': response.meta['article_id'],
