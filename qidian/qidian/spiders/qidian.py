@@ -26,7 +26,7 @@ class qidian(Spider):
                 "token":token
             })
 
-        for female_page_index in range(1, 11):
+        for female_page_index in range(1, 21):
             list_page_url = 'https://m.qidian.com/majax/rank/updatelist?gender=female&catId=-1&pageNum=' + str(female_page_index) + '&_csrfToken=' + token
             yield Request(url=list_page_url, callback=self.parseLastUpdatePage, meta={
                 "token":token
