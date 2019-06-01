@@ -65,7 +65,7 @@ class qidian(Spider):
 
         # TODO 评论数需要登录
         #talks = response.xpath('//*[@id="ariaFriNum"]/output/text()').extract()[0]
-        talks = 0
+        talks = '0'
 
         yield Request(url='https://m.qidian.com/book/' + str(response.meta['article_id']) + '/catalog', callback=self.parseChapterSize, meta={
             'article_id': response.meta['article_id'],
