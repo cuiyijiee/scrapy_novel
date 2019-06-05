@@ -96,8 +96,9 @@ class qidian(Spider):
         })
 
     def parseChapterSize(self,response):
-        chapter_list = response.xpath('//*[@id="volumes"]/li').extract()
-        chapter_size = len(chapter_list)
+        #chapter_list = response.xpath('//*[@id="volumes"]/li').extract()
+        #chapter_size = len(chapter_list)
+        chapter_size = response.xpath('//*[@id="catelogX"]/div/div[1]/h4/output/text()').extract()[0]
 
         item = QidianItem()
 
