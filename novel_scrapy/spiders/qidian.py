@@ -1,11 +1,12 @@
 # coding=utf-8
-from scrapy import Spider, Request, Selector
-from datetime import datetime
-import time
-import re
-from ..items import AuthorizedSiteItem
-from scrapy.http.cookies import CookieJar
 import json
+import time
+from datetime import datetime
+
+from scrapy import Spider, Request
+from scrapy.http.cookies import CookieJar
+
+from ..items import AuthorizedSiteItem
 
 # 实例化一个cookiejar对象
 cookie_jar = CookieJar()
@@ -88,7 +89,7 @@ class qidian(Spider):
 
         lasted_time_str = response.xpath('//*[@id="ariaMuLu"]/text()').extract()[0]
         now_time = int(time.time())
-        if lasted_time_str.find('前') >= 0 | lasted_time_str.find('刚刚'):
+        if lasted_time_str.find('前') >= 0 | lasted_time_str.find('刚刚') >= 0:
             lasted_time = now_time - now_time % 86400 + time.timezone
         elif lasted_time_str.find('昨日') >= 0:
             lasted_time = now_time - now_time % 172800 + time.timezone
