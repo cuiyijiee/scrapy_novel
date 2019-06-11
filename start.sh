@@ -1,6 +1,2 @@
-#!/bin/bash
-
-cd /home/scrapy_novel/zhuishubang
-nohup python main.py>log.txt &
-cd /home/scrapy_novel/biqugecc
-nohup python main.py>log.txt &
+nohup python3.7 biqugecc.py>log.txt 2>&1 &
+nohup python3.7 zhuishubang.py>log.txt 2>&1 &
