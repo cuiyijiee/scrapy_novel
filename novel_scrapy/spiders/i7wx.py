@@ -14,8 +14,20 @@ class i7wx(Spider):
     allow_domains = ['https://m.i7wx.com']
 
     def parse(self, response):
+        for page_index in range(1, 500):
+            yield Request(url='https://m.i7wx.com/list/1_2_' + str(page_index) + '.html', callback=self.parse_page)
+        for page_index in range(1, 500):
+            yield Request(url='https://m.i7wx.com/list/2_2_' + str(page_index) + '.html', callback=self.parse_page)
+        for page_index in range(1, 500):
+            yield Request(url='https://m.i7wx.com/list/3_2_' + str(page_index) + '.html', callback=self.parse_page)
+        for page_index in range(1, 500):
+            yield Request(url='https://m.i7wx.com/list/4_2_' + str(page_index) + '.html', callback=self.parse_page)
         for page_index in range(1, 451):
             yield Request(url='https://m.i7wx.com/list/5_2_' + str(page_index) + '.html', callback=self.parse_page)
+        for page_index in range(1, 500):
+            yield Request(url='https://m.i7wx.com/list/6_2_' + str(page_index) + '.html', callback=self.parse_page)
+        for page_index in range(1, 500):
+            yield Request(url='https://m.i7wx.com/list/7_2_' + str(page_index) + '.html', callback=self.parse_page)
 
     def parse_page(self, response):
         article_url_list = response.xpath('/html/body/div[4]/ul/li/a/@href').extract()
