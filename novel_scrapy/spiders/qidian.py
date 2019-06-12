@@ -90,7 +90,7 @@ class qidian(Spider):
 
         lasted_time_str = response.xpath('//*[@id="ariaMuLu"]/text()').extract()[0]
         now_time = int(time.time())
-        if lasted_time_str.find('前') > 0 | lasted_time_str.find('刚刚') > 0:
+        if (lasted_time_str.find('前') >= 0) | (lasted_time_str.find('刚刚') >= 0):
             lasted_time = now_time - now_time % 86400 + time.timezone
         elif lasted_time_str.find('昨日') >= 0:
             lasted_time = now_time - now_time % 172800 + time.timezone
