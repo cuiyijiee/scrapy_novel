@@ -22,19 +22,21 @@ class qidian(Spider):
         cookie = response.headers.getlist('Set-Cookie')[0]
         token = bytes.decode(cookie).split(";")[0].split("=")[1]
 
-        for male_page_index in range(1, 31):
-            list_page_url = 'https://m.qidian.com/majax/rank/updatelist?gender=male&catId=-1&pageNum=' + \
-                            str(male_page_index) + '&_csrfToken=' + token
-            yield Request(url=list_page_url, callback=self.parseLastUpdatePage, meta={
-                "token": token
-            })
+        for cat_index in range(1, 13):
+            for male_page_index in range(1, 31):
+                list_page_url = 'https://m.qidian.com/majax/rank/updatelist?gender=male&catId=' + str(cat_index) + '&pageNum=' + \
+                                str(male_page_index) + '&_csrfToken=' + token
+                yield Request(url=list_page_url, callback=self.parseLastUpdatePage, meta={
+                    "token": token
+                })
 
-        for female_page_index in range(1, 21):
-            list_page_url = 'https://m.qidian.com/majax/rank/updatelist?gender=female&catId=-1&pageNum=' + \
-                            str(female_page_index) + '&_csrfToken=' + token
-            yield Request(url=list_page_url, callback=self.parseLastUpdatePage, meta={
-                "token": token
-            })
+        for cat_index in range(80, 90):
+            for female_page_index in range(1, 21):
+                list_page_url = 'https://m.qidian.com/majax/rank/updatelist?gender=female&catId=' + str(cat_index) + '&pageNum=' + \
+                                str(female_page_index) + '&_csrfToken=' + token
+                yield Request(url=list_page_url, callback=self.parseLastUpdatePage, meta={
+                    "token": token
+                })
 
         for female_page_index in range(1, 26):
             list_page_url = 'https://m.qidian.com/majax/rank/yuepiaolist?gender=male&catId=-1&pageNum=' + \
