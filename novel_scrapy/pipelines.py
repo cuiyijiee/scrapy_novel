@@ -12,7 +12,9 @@ from novel_scrapy.items import PirateSiteItem
 class NovelScrapyPipeline(object):
     def process_item(self, item, spider):
         if isinstance(item,PirateSiteItem):
-            connection = pymysql.connect(host='127.0.0.1',
+            connection = pymysql.connect(
+                                         #host='129.211.134.14',
+                                         host='127.0.0.1',
                                          db='scrapy',
                                          user='scrapy',
                                          password='Abc,123.',

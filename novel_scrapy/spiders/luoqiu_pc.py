@@ -9,19 +9,19 @@ from ..items import PirateSiteItem
 
 
 class luoqiu(Spider):
-    name = "luoqiu"
-    start_urls = ['http://m.luoqiu.com']
-    allow_domains = ['http://m.luoqiu.com']
+    name = "luoqiu_pc"
+    start_urls = ['https://www.luoqiu.com']
+    allow_domains = ['https://www.luoqiu.com']
 
     def parse(self, response):
-        for page_index in range(1, 451):
-            yield Request(url='http://m.luoqiu.com/top-lastupdate-' + str(page_index) + '/', callback=self.parse_page)
+        for page_index in range(1, 500):
+            yield Request(url='https://www.luoqiu.com/top/lastupdate_' + str(page_index) + '.html',
+                          callback=self.parse_page)
 
     def parse_page(self, response):
-        article_url_list = response.xpath('//div[@class="cover"]/p/a[2]/@href').extract()
-        for article_url_suffix in article_url_list:
-            article_id = re.findall(r'\d+', article_url_suffix)[0]
-            article_url = 'http://m.luoqiu.com' + article_url_suffix
+        article_url_list = response.xpath('//div[@class="body"]/table/tbody/tr/td[2]/a/@href').extract()
+        for article_url in article_url_list:
+            article_id = re.findall(r'\d+', article_url)[0]
             yield Request(url=article_url, callback=self.parse_article, meta={
                 'article_id': article_id,
                 'article_url': article_url
@@ -29,25 +29,27 @@ class luoqiu(Spider):
 
     def parse_article(self, response):
 
-        article_name = response.xpath('//div[@class="block_txt2"]/p[1]/a/h2/text()').extract()[0]
-        author = response.xpath('//div[@class="block_txt2"]/p[2]/text()').extract()[0].split('：')[1]
+        article_name = response.xpath('//meta[@property="og:novel:book_name"]/@content').extract()[0]
+        author = response.xpath('//meta[@property="og:novel:author"]/@content').extract()[0]
         only_id = article_name + "-:-" + author
 
-        lasted_time_str = response.xpath('//div[@class="block_txt2"]/p[5]/text()').extract()[0].split('：')[1].strip()
-        try:
-            lasted_datetime = datetime.strptime(lasted_time_str, "%Y-%m-%d")
-        except ValueError:
-            lasted_datetime = datetime.strptime(lasted_time_str, "%Y/%m/%d")
-        lasted_time = int(time.mktime(lasted_datetime.timetuple()))
-        lasted_name = response.xpath('//div[@class="block_txt2"]/p[6]/a/text()').extract()[0]
+        # 如果出现问题使用下面这个，精确度到日
+        # lasted_time_str = response.xpath('//meta[@property="og:novel:update_time"]/@content').extract()[0]
+        # lasted_datetime = datetime.strptime(lasted_time_str, "%Y-%m-%d")
+        lasted_time_str = response.xpath('//td[@width="27%"]/text()').extract()[0]
+        lasted_datetime = datetime.strptime(lasted_time_str, "%Y-%m-%d %H:%M:%S")
 
-        is_full = 1 if response.xpath('//div[@class="block_txt2"]/p[4]/text()').extract()[0].find('连载') >= 0 else 2
+        lasted_time = int(time.mktime(lasted_datetime.timetuple()))
+        lasted_name = response.xpath('//meta[@property="og:novel:latest_chapter_name"]/@content').extract()[0]
+
+        is_full = 1 if response.xpath('//meta[@property="og:novel:status"]/@content').extract()[0].find(
+            '连载') >= 0 else 2
         is_vip = 0
         votes = 0
 
-        chapter_url = 'http://m.luoqiu.com/wapbook-' + response.meta['article_id'] + '/'
+        chapter_url = 'https://www.luoqiu.com/read/' + response.meta['article_id'] + '/'
 
-        yield Request(url=chapter_url,callback=self.parse_chapter,meta={
+        yield Request(url=chapter_url, callback=self.parse_chapter, meta={
             'article_id': response.meta['article_id'],
             'article_url': response.meta['article_url'],
             'article_name': article_name,
@@ -60,8 +62,8 @@ class luoqiu(Spider):
             'votes': votes
         })
 
-    def parse_chapter(self,response):
-        chapter_size = len(response.xpath('//ul[@class="chapter"]/li'))
+    def parse_chapter(self, response):
+        chapter_size = len(response.xpath('//*[@id="defaulthtml4"]/table/tbody/tr')) * 4
 
         item = PirateSiteItem()
 
