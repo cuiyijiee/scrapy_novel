@@ -8,7 +8,7 @@ from scrapy import Spider, Request
 from ..items import PirateSiteItem
 
 
-class luoqiu(Spider):
+class luoqiu_pc(Spider):
     name = "luoqiu_pc"
     start_urls = ['https://www.luoqiu.com']
     allow_domains = ['https://www.luoqiu.com']
