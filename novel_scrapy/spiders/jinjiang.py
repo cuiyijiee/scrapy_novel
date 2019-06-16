@@ -22,7 +22,7 @@ class qidian(Spider):
     def parse(self, response):
 
         for page_index in range(1, 101):
-            list_page_url = 'http://www.jjwxc.net/bookbase_slave.php?booktype=&opt=&orderstr=3&endstr=&page=' + str(page_index)
+            list_page_url = 'http://www.jjwxc.net/bookbase_slave.php?booktype=&opt=&orderstr=1&endstr=&page=' + str(page_index)
             yield Request(url=list_page_url, callback=self.parseLastUpdatePage)
 
     def parseLastUpdatePage(self, response):
