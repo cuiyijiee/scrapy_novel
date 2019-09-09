@@ -43,8 +43,8 @@ class qidian(Spider):
         author = response_json['authorName']
         only_id = article_name + "-:-" + author
 
-        is_vip = 1 if response_json['isVip'] == '0' else 2
-        is_full = response_json['isVip']
+        is_vip = response_json['isVip']
+        is_full = 1 if response_json['novelStep'] == '1' else 0
 
         lasted_time_str = response_json['renewDate']
         lasted_datetime = datetime.strptime(lasted_time_str, "%Y-%m-%d %H:%M:%S")

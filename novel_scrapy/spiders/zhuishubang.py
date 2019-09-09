@@ -24,7 +24,7 @@ class zhuishubang(Spider):
             article_selector = Selector(text=article)
             lasted_name = article_selector.xpath('//p[@class="newChapter"]/a/text()').extract()[0]
             is_full_status = article_selector.xpath('//span[@class="state"]/text()').extract()[0]
-            is_full = 1 if is_full_status.encode('utf-8') == '连载中' else 2
+            is_full = 0 if is_full_status.encode('utf-8') == '连载中' else 1
             # 网页上解析到的上次更新时间
             lasted_time_str = '20' + article_selector.xpath('//span[@class="state"]/text()').extract()[1].split(':', 1)[
                 1]

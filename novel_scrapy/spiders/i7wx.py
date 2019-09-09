@@ -50,7 +50,7 @@ class i7wx(Spider):
         lasted_name = response.xpath('//*[@id="bookinfo"]/div[4]/a/text()').extract()[0]
         # 手机站采集不到是否完本
 
-        is_full = 2
+        is_full = 0
         is_vip = 0
         votes_str = response.xpath('//*[@id="bookinfo"]/div[2]/div[4]/text()').extract()[0]
         votes = re.findall(r'\d+', votes_str)[0]

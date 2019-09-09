@@ -42,8 +42,8 @@ class luoqiu_pc(Spider):
         lasted_time = int(time.mktime(lasted_datetime.timetuple()))
         lasted_name = response.xpath('//meta[@property="og:novel:latest_chapter_name"]/@content').extract()[0]
 
-        is_full = 1 if response.xpath('//meta[@property="og:novel:status"]/@content').extract()[0].find(
-            '连载') >= 0 else 2
+        is_full = 0 if response.xpath('//meta[@property="og:novel:status"]/@content').extract()[0].find(
+            '连载') >= 0 else 1
         is_vip = 0
         votes = 0
 

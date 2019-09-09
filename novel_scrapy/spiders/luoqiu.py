@@ -41,7 +41,7 @@ class luoqiu(Spider):
         lasted_time = int(time.mktime(lasted_datetime.timetuple()))
         lasted_name = response.xpath('//div[@class="block_txt2"]/p[6]/a/text()').extract()[0]
 
-        is_full = 1 if response.xpath('//div[@class="block_txt2"]/p[4]/text()').extract()[0].find('连载') >= 0 else 2
+        is_full = 0 if response.xpath('//div[@class="block_txt2"]/p[4]/text()').extract()[0].find('连载') >= 0 else 1
         is_vip = 0
         votes = 0
 

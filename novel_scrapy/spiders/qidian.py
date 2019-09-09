@@ -76,7 +76,7 @@ class qidian(Spider):
             only_id = article_name + "-:-" + author
 
             is_full_status = article['state']
-            is_full = 1 if is_full_status == '连载中' else 2
+            is_full = 0 if is_full_status == '连载中' else 1
             article_info_url = 'https://m.qidian.com/book/' + str(article_id)
 
             yield Request(url=article_info_url, callback=self.parseArticleInfo, meta={
@@ -103,7 +103,7 @@ class qidian(Spider):
         lasted_name = response.xpath('//*[@id="ariaMuLu"]/text()').extract()[1].replace('连载至', '')
 
         is_vip_group = response.xpath('//*[@id="bookDetailWrapper"]/div/div[2]/ul/li').extract()
-        is_vip = 1 if len(is_vip_group) == 3 else 2
+        is_vip = 1 if len(is_vip_group) == 3 else 0
 
         votes = response.xpath('//*[@id="payTicketsX"]/li[1]/a/p/span[1]/text()').extract()[0]
         months_vote = int(response.xpath('//*[@id="payTicketsX"]/li[2]/a/p/span[1]/text()').extract()[0])

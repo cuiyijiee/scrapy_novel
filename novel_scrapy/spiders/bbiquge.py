@@ -30,7 +30,7 @@ class biqugecc(Spider):
         lasted_time = int(time.mktime(lasted_datetime.timetuple()))
 
         is_full_status = response.xpath('//meta[@property="og:novel:status"]/@content').extract()[0]
-        is_full = 1 if is_full_status == '连载' else 2
+        is_full = 0 if is_full_status == '连载' else 1
         is_vip = 0
         votes = 0
 
