@@ -9,3 +9,5 @@ nohup python3.7 du00.py>log/du00.txt 2>&1 &
 nohup python3.7 jinjiang.py>log/jinjiang.txt 2>&1 &
 nohup python3.7 xbiquge6.py>log/xbiquge6.txt 2>&1 &
 nohup python3.7 bbiquge.py>log/bbiquge.txt 2>&1 &
+nohup python3.7 xbiquge6.py>log/xbiquge6.txt 2>&1 &
+nohup python3.7 bxzww.py>log/bxzww.txt 2>&1 &

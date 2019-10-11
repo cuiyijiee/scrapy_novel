@@ -16,7 +16,6 @@ class bxzww(Spider):
         for article_index in range(1, 70368):
             # for article_index in range(1, 2):
             article_url = "http://www.bxzww.com/bxinfo/" + str(int(article_index / 1000)) + "/" + str(article_index) + ".htm"
-            print(article_url)
             yield Request(url=article_url, callback=self.parseArticle, meta={
                 'article_id': article_index,
                 'article_url': article_url
